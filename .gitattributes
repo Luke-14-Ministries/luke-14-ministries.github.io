@@ -1,0 +1,17 @@
+# Keep line endings sane across Windows, macOS and the Linux CI runners.
+# Everything textual is stored as LF in the repository; Windows tools may
+# still use CRLF locally, but git normalizes on the way in.
+* text=auto eol=lf
+
+# Binary assets — never touch these.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.gif  binary
+*.webp binary
+*.ico  binary
+*.pdf  binary
+*.docx binary
+*.xlsx binary
+*.woff  binary
+*.woff2 binary
