@@ -5,28 +5,26 @@ accounts platform (Camp Celebrate registration for families & volunteers, and on
 Every page shows a red **PREVIEW / TEST BUILD** banner so camp administrators know it is not
 the official site.
 
+**Live preview:** <https://luke-14-ministries.github.io/>
+
 ## Run locally
 
 ```bash
-npm install
+npm ci             # installs the exact tested versions; use this, not npm install
 npm run dev        # http://localhost:3000
 ```
 
-## Publish the preview on GitHub Pages
+Requires **Node.js 24 LTS**. New here? Read [CONTRIBUTING.md](CONTRIBUTING.md) first — it
+covers setup, the everyday git workflow, project layout, and the security rules.
 
-1. Create a GitHub repo (e.g. `luke14-preview`) and push this folder:
-   ```bash
-   git init && git add -A && git commit -m "Preview build"
-   git branch -M main
-   git remote add origin https://github.com/<you>/luke14-preview.git
-   git push -u origin main
-   ```
-2. In the repo: **Settings → Pages → Source: GitHub Actions**.
-3. The included workflow (`.github/workflows/deploy.yml`) builds and deploys on every push.
-   Preview URL: `https://<you>.github.io/luke14-preview/`
+## How it deploys
 
-The workflow sets `NEXT_PUBLIC_BASE_PATH` to the repo name automatically. For local builds
-that's left empty, so links work at the root.
+`.github/workflows/deploy.yml` builds the static export and publishes it to GitHub Pages on
+every push to `main`. Nothing is uploaded by hand. Because the repository is named
+`luke-14-ministries.github.io`, the site serves from the domain root, so no `basePath` is
+needed — the same configuration the eventual Vercel deployment will use.
+
+Pages source is set to **GitHub Actions** under Settings → Pages.
 
 ## What's here
 
@@ -61,3 +59,9 @@ that's left empty, so links work at the root.
   Message form is used.
 - Pray/Newsletter/Kenya signups still link to the existing Google Forms; Hazelnut/speaker
   bookings still link to the existing Airtable forms (all functional).
+
+## Project documentation
+
+Plans, vendor decisions, account inventory, brand assets and board materials live in the
+ministry's SharePoint team site under **Website** — not in this repository. Secrets live in the
+password vault. Neither ever belongs in git.
